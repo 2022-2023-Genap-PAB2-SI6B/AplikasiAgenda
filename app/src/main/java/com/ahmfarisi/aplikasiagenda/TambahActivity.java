@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class TambahActivity extends AppCompatActivity {
     private EditText etTanggal, etJam, etKegiatan;
@@ -40,7 +41,15 @@ public class TambahActivity extends AppCompatActivity {
                     etKegiatan.setError("Kegiatan Harus Diisi");
                 }
                 else{
-                    
+                    MyDatabaseHelper myDB = new MyDatabaseHelper(TambahActivity.this);
+                    long eks = myDB.tambahAgenda(tanggal, jam, kegiatan);
+                    if(eks == -1){
+                        Toast.makeText(TambahActivity.this, "Tambah Data Gagal!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(TambahActivity.this, "Tambah Data Sukses!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
             }
         });
