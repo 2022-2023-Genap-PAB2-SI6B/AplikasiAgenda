@@ -65,6 +65,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         return varCursor;
     }
-    
+
 
 }
